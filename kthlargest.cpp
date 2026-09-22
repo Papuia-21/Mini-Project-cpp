@@ -3,32 +3,19 @@
 #include<queue>
 using namespace std;
 
-class kthLargest {
+class Solution {
     public:
-    int k;
-    priority_queue<int,vector<int>,greater<int>>pq;
-
-    kthLargest(int k , vector<int>& nums){
+    int findKthlargest(int k , vector<int>& nums){
         int n = nums.size();
-        this->k = k;
 
-        for( int i = 0 ; i < n ; i++ )
-        {
+        priority_queue<int,vector<int>,greater <int>>pq;
+
+        for( int i = 0 ; i < n ; i++ ){
             pq.push(nums[i]);
 
-            if(pq.size()>k)
-            {
+            if(pq.size()>k){
                 pq.pop();
             }
-        }
-    }
-
-    int add(int val){
-        pq.push(val);
-
-        if(pq.size()>k)
-        {
-            pq.pop();
         }
         return pq.top();
     }
@@ -36,6 +23,8 @@ class kthLargest {
 
 int main()
 {
+    Solution obj;
+
     int n;
     cout << "enter size : ";
     cin >> n;
@@ -51,9 +40,7 @@ int main()
     cout << "Enter kth element : ";
     cin >> k;
 
-    kthLargest obj(k,nums);
-
-    cout << k << "th largest element is " << obj.pq.top();
+    cout << k << "th Largest element is " << obj.findKthlargest(k,nums);
     
     return 0;
 }
